@@ -3,7 +3,7 @@ This is a reporting tool built in Python `newsdb.py` that answers some question 
 
 ## Prepare the software and the data
 * You should have the virtual machine `VirtualBox` installed on your device.
-* Download Vagrant and go to the same directory where you downloaded vagrant and bring up the virtual machine with `vagrant up` and log into it with `vagrant ssh`.
+* [Download Vagrant](https://www.vagrantup.com/downloads.html) and go to the same directory where you downloaded vagrant and bring up the virtual machine with `vagrant up` and log into it with `vagrant ssh`.
 * [Download the date](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip) and unzip it.
 * Move the file `newsdata.sql` to the shared vagrant directory.
 * From the virtual machine `cd` into the vagrant directory and load the date `psql -d news -f newsdata.sql`.
