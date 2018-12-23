@@ -77,7 +77,7 @@ def popular_authors():
 
 def error_percent():
     '''
-    This function find the percenage error if it exceeds 1% for a day
+    This function finds the percentage error if it exceeds 1% for a day
     '''
 
     '''Run the third function views from the README.md file first'''
