@@ -5,6 +5,18 @@ import calendar
 
 DBNAME = 'news'
 
+def db_connect():
+    '''
+    Creates and returns a connection to the database defined by DBNAME, as well as
+    cursor for the database
+    Returns:
+    db, c - a tuple. The first element is a connection to the database.
+    The second element is a cursor for the database.
+    '''
+    db = psycopg2.connect(dbname = DBNAME)
+    c = db.cursor()
+    return(db,c)
+    
 def most_visited():
     # This function finds the three most viewed articles
     # on the newspaper website
