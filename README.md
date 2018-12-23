@@ -23,21 +23,33 @@ Connect to the database `psql -d news`, and Run these commands before running th
 * `create view most_visited_article as select path,
   count(*) as num from log group by path
   order by num desc offset 1`
+View explanation:
+Create view most_visited_article with two columns path, and num which is the count of each time a path is visited for the first three highest visited path excluding the '/' the root path.
 
 #### Views in the function `popular_authors()`
 * The first view is needed, because the following view is dependent on the first view above.
 * `create view subview as select author,title,num from articles,
   most_visited_article where  most_visited_article.path like
   '%' || articles.slug order by num desc`
+View explanation:
+Create view subview which is an inner join of the articles table and the most_visited_article view table with columns, author, title, num to find the name of the author later.
 
 #### Views in the function `error_percent()`
 * `create view datepart as select time,
   time::timestamp::date as date, status from log`
+View explanation:
+Create view datepart with two columns status and date, where date is the date part of timestamp to count according to days not according to timestamp.
 * `create view error_tb as select date, count(*) as error_code
   from datepart where status like '4%' group by date order by error_code desc`
+View explanation:
+Create view error_tb with two columns date and error_code which is the count of the error status code on each day.
 * `create view status_tb as select date, count(*) as status_code
   from datepart group by date order by status_code desc`
+View explanation:
+Create view status_tb with two columns date and status_code which is the count of all status codes on each day.
 * `create view percentage_tb as select status_tb.date,
   error_code, status_code, (cast(error_code as decimal)/cast(status_code as decimal))*100
   as error_percent from error_tb, status_tb
   where error_tb.date=status_tb.date order by error_code desc`
+View explanation:
+Create view percentage_tb that is an inner join between the error_tb and status_tb with three columns, error_code status_code, and one of the error percenage.
