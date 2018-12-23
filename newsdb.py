@@ -58,7 +58,7 @@ def popular_authors():
     # Join the authors table with a subquery that finds the maximum number of
     # views for each author and order the results according to views
     result = execute_query('''select name, subquery.num
-    from (select author,count(*) as nom, max(num) as num from subview
+    from (select author,count(*) as nom, sum(num) as num from subview
     group by author order by author) as subquery, authors
     where subquery.author = authors.id order by num desc''')
 
