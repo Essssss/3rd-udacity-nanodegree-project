@@ -62,11 +62,10 @@ def popular_authors():
     group by author order by author) as subquery, authors
     where subquery.author = authors.id order by num desc''')
 
-    print"Most Popular Authors:\n1)", result[0][0], " - ",
-    print result[0][1], "views"
-    print"2)", result[1][0], " - ", result[1][1], "views"
-    print"3)", result[2][0], " - ", result[2][1], "views"
-    print"3)", result[3][0], " - ", result[3][1], "views"
+    n = len(result)
+    print"Most Popular Authors:"
+    for x in range(0,n):
+        print x+1,")", result[x][0], " - ", result[x][1], "views"
 
 
 def error_percent():
