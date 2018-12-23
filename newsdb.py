@@ -3,6 +3,7 @@ import psycopg2
 import string
 import calendar
 
+DBNAME = 'news'
 
 def most_visited():
     # This function finds the three most viewed articles
