@@ -34,9 +34,12 @@ def execute_query(query):
     db.close()
 
 def most_visited():
-    # This function finds the three most viewed articles
-    # on the newspaper website
+    '''
+    This function finds the three most viewed articles
+    on the newspaper website
+    '''
 
+    '''Run the first function view from the README.md file first'''
     # Join the articles table with the most_visited_article view table
     # and select the title for each path
     result = execute_query('''select title, most_visited_article.num
