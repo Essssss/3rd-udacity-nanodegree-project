@@ -32,12 +32,10 @@ def execute_query(query):
     result = c.fetchall()
     return(result)
     db.close()
-    
+
 def most_visited():
     # This function finds the three most viewed articles
     # on the newspaper website
-    db = psycopg2.connect("dbname=news")  # Connect to the database
-    cursor = db.cursor()
     # Create view most_visited_article with two columns
     # path, and num which is the count of each time a path is visited
     # for the first three heighest visited path excluding the '/' the root path
@@ -59,8 +57,7 @@ def most_visited():
 
 def popular_authors():
     # This function finds the most popular authors and thier maximum views
-    db = psycopg2.connect("dbname=news")  # Connect to the database
-    cursor = db.cursor()
+
     # Create view most_visited_article with two columns
     # path, and num which is the count of each time a path is visited
     # excluding the '/' the root path
@@ -89,8 +86,7 @@ def popular_authors():
 
 def error_percent():
     # This function find the percenage error if it exceeds 1% for a day
-    db = psycopg2.connect("dbname=news")  # Connect to the database
-    cursor = db.cursor()
+    
     # Create view datepart with two columns status and date, where date
     # is the date part of timestamp
     # To count according to days not according to timestamp
