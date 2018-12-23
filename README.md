@@ -22,7 +22,7 @@ Connect to the database `psql -d news`, and Run these commands before running th
 #### Views in the function `most_visited()`
 * `create view most_visited_article as select path,
   count(*) as num from log group by path
-  order by num desc limit 3 offset 1`
+  order by num desc offset 1`
 
 #### Views in the function `popular_authors()`
 * `create view most_visited_article as select path, count(*) as num from log
