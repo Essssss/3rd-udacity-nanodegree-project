@@ -73,8 +73,11 @@ def popular_authors():
 
 
 def error_percent():
-    # This function find the percenage error if it exceeds 1% for a day
+    '''
+    This function find the percenage error if it exceeds 1% for a day
+    '''
 
+    '''Run the third function view from the README.md file first'''
     # Find the error percent where it is above 1%
     result = execute_query('''select date, round(error_percent,1) from percentage_tb
     where error_percent > 1.00''')
