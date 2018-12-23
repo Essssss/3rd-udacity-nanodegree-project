@@ -39,11 +39,10 @@ def most_visited():
 
     # Join the articles table with the most_visited_article view table
     # and select the title for each path
-    cursor.execute('''select title, most_visited_article.num
+    result = execute_query('''select title, most_visited_article.num
     from articles, most_visited_article where
     most_visited_article.path like '%' || articles.slug order by num desc''')
-    result = cursor.fetchall()
-    db.close()
+
     print"Three Most Visited Articles:\n1)", result[0][0],
     print" - ", result[0][1], "views"
     print"2)", result[1][0], " - ", result[1][1], "views"
@@ -57,12 +56,11 @@ def popular_authors():
 
     # Join the authors table with a subquery that finds the maximum number of
     # views for each author and order the results according to views
-    cursor.execute('''select name, subquery.num
+    result = execute_query('''select name, subquery.num
     from (select author,count(*) as nom, max(num) as num from subview
     group by author order by author) as subquery, authors
     where subquery.author = authors.id order by num desc''')
-    result = cursor.fetchall()
-    db.close()
+
     print"Most Popular Authors:\n1)", result[0][0], " - ",
     print result[0][1], "views"
     print"2)", result[1][0], " - ", result[1][1], "views"
@@ -74,10 +72,9 @@ def error_percent():
     # This function find the percenage error if it exceeds 1% for a day
 
     # Find the error percent where it is above 1%
-    cursor.execute('''select date, round(error_percent,1) from percentage_tb
+    result = execute_query('''select date, round(error_percent,1) from percentage_tb
     where error_percent > 1.00''')
-    result = cursor.fetchall()
-    db.close()
+    
     date = result[0][0]
     date = str(date)
     # Clean date from dashes
