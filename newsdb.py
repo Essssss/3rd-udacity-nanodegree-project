@@ -5,22 +5,24 @@ import calendar
 
 DBNAME = 'news'
 
+
 def db_connect():
     '''
-    Creates and returns a connection to the database defined by DBNAME, as well as
-    cursor for the database
+    Creates and returns a connection to the database defined by DBNAME,
+    as well as cursor for the database
     Returns:
     db, c - a tuple. The first element is a connection to the database.
     The second element is a cursor for the database.
     '''
-    db = psycopg2.connect(dbname = DBNAME)
+    db = psycopg2.connect(dbname=DBNAME)
     c = db.cursor()
-    return(db,c)
+    return(db, c)
+
 
 def execute_query(query):
     '''
-    execute_query takes an SQL query as a parameter. Executes the query and returns
-    the results as a list of tuplesself.
+    execute_query takes an SQL query as a parameter. Executes the query
+    and returns the results as a list of tuplesself.
     args:
     query - an SQL query statement to be executed.
     returns:
@@ -32,6 +34,7 @@ def execute_query(query):
     result = c.fetchall()
     return(result)
     db.close()
+
 
 def most_visited():
     '''
@@ -47,10 +50,9 @@ def most_visited():
     most_visited_article.path like '%' || articles.slug order by num desc''')
 
     n = len(result)
-
     print"Three Most Visited Articles:"
-    for x in range(0,n):
-        print x+1,")", result[x][0], " - ", result[x][1], "views"
+    for x in range(0, n):
+        print x+1, ")", result[x][0], " - ", result[x][1], "views"
 
 
 def popular_authors():
@@ -68,8 +70,8 @@ def popular_authors():
 
     n = len(result)
     print"Most Popular Authors:"
-    for x in range(0,n):
-        print x+1,")", result[x][0], " - ", result[x][1], "views"
+    for x in range(0, n):
+        print x+1, ")", result[x][0], " - ", result[x][1], "views"
 
 
 def error_percent():
@@ -81,7 +83,6 @@ def error_percent():
     # Find the error percent where it is above 1%
     result = execute_query('''select date, round(error_percent,1) from percentage_tb
     where error_percent > 1.00''')
-
     date = result[0][0]
     date = str(date)
     # Clean date from dashes
