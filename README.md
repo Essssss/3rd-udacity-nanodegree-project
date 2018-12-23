@@ -25,8 +25,7 @@ Connect to the database `psql -d news`, and Run these commands before running th
   order by num desc offset 1`
 
 #### Views in the function `popular_authors()`
-* `create view most_visited_article as select path, count(*) as num from log
-  group by path order by num desc offset 1`
+* The first view is needed, because the following view is dependent on the first view above.
 * `create view subview as select author,title,num from articles,
   most_visited_article where  most_visited_article.path like
   '%' || articles.slug order by num desc`
