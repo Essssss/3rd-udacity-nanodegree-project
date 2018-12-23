@@ -54,10 +54,11 @@ def most_visited():
 
 
 def popular_authors():
-    # This function finds the most popular authors and thier maximum views
-
-
-
+    '''
+    This function finds the most popular authors and the sum of their views
+    and order the authors them according to the heighest views
+    '''
+    '''Run the second function views from the README.md file first'''
     # Join the authors table with a subquery that finds the maximum number of
     # views for each author and order the results according to views
     result = execute_query('''select name, subquery.num
