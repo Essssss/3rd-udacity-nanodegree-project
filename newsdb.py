@@ -16,6 +16,22 @@ def db_connect():
     db = psycopg2.connect(dbname = DBNAME)
     c = db.cursor()
     return(db,c)
+
+def execute_query(query):
+    '''
+    execute_query takes an SQL query as a parameter. Executes the query and returns
+    the results as a list of tuplesself.
+    args:
+    query - an SQL query statement to be executed.
+    returns:
+    A list of tuples containing the result of the query.
+    '''
+    c = db_connect()[1]
+    c.execute(query)
+    db = db_connect()[0]
+    result = c.fetchall()
+    return(result)
+    db.close()
     
 def most_visited():
     # This function finds the three most viewed articles
