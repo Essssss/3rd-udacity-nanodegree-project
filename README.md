@@ -18,7 +18,7 @@ This program consists of three function each function answers one question.
 Further explanation is in the comments in the `newsdb.py` file.
 
 ## The create view commands
-
+Connect to the database `psql -d news`, and Run these commands before running the `newsdb.py`.
 #### Views in the function `most_visited()`
 * `create view most_visited_article as select path,
   count(*) as num from log group by path
