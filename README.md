@@ -11,7 +11,7 @@ This is a reporting tool built in Python `newsdb.py` that answers some question 
 * The program will run and will extract the desired information from the database as shown in the example text file.
 
 ## Description of the code in `newsdb.py`
-This program consists of three function each function answers one question.
+This program consists of five functions. The first two functions are `db_connect()` and `execute_query()`the first one connects to the database and the second one executes queries and they are used in each of the functions below.
 * First question "What are the most popular three articles of all time?" is answered by this function `most_visited()`.
 * Second question "Who are the most popular article authors of all time?" is answered by this function `popular_authors()`.
 * Third question "On which days did more than 1% of requests lead to errors?" is answered by this function `error_percent()`.
