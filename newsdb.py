@@ -47,7 +47,8 @@ def most_visited():
     # and select the title for each path
     result = execute_query('''select title, most_visited_article.num
     from articles, most_visited_article where
-    most_visited_article.path like '%' || articles.slug order by num desc limit 3''')
+    most_visited_article.path like '%' || articles.slug
+    order by num desc limit 3''')
 
     n = len(result)
     print"Three Most Visited Articles:"
