@@ -43,10 +43,11 @@ def most_visited():
     from articles, most_visited_article where
     most_visited_article.path like '%' || articles.slug order by num desc''')
 
-    print"Three Most Visited Articles:\n1)", result[0][0],
-    print" - ", result[0][1], "views"
-    print"2)", result[1][0], " - ", result[1][1], "views"
-    print"3)", result[2][0], " - ", result[2][1], "views"
+    n = len(result)
+
+    print"Three Most Visited Articles:"
+    for x in range(0,n):
+        print x+1,")", result[x][0], " - ", result[x][1], "views"
 
 
 def popular_authors():
@@ -74,7 +75,7 @@ def error_percent():
     # Find the error percent where it is above 1%
     result = execute_query('''select date, round(error_percent,1) from percentage_tb
     where error_percent > 1.00''')
-    
+
     date = result[0][0]
     date = str(date)
     # Clean date from dashes
