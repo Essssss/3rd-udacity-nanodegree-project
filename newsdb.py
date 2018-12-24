@@ -8,15 +8,17 @@ DBNAME = 'news'
 
 def db_connect():
     '''
-    Creates and returns a connection to the database defined by DBNAME,
-    as well as cursor for the database
-    Returns:
-    db, c - a tuple. The first element is a connection to the database.
-    The second element is a cursor for the database.
+    Creates a connection to the database defined by DBNAME.
+    and calls each function of these: most_visited(),
+    popular_authors(), error_percent() and pass down a cursor "c"
+    to execute the queries by the execute_query() function.
     '''
     db = psycopg2.connect(dbname=DBNAME)
     c = db.cursor()
-    return(db, c)
+    most_visited(c)
+    popular_authors(c)
+    error_percent(c)
+    db.close()
 
 
 def execute_query(query):
