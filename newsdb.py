@@ -56,7 +56,7 @@ def most_visited(c):
         print x+1, ")", result[x][0], " - ", result[x][1], "views"
 
 
-def popular_authors():
+def popular_authors(c):
     '''
     This function finds the most popular authors and the sum of their views
     and order the authors them according to the heighest views
@@ -64,10 +64,11 @@ def popular_authors():
     '''Run the second function views from the README.md file first'''
     # Join the authors table with a subquery that finds the maximum number of
     # views for each author and order the results according to views
-    result = execute_query('''select name, subquery.num
+    query = '''select name, subquery.num
     from (select author,count(*) as nom, sum(num) as num from subview
     group by author order by author) as subquery, authors
-    where subquery.author = authors.id order by num desc''')
+    where subquery.author = authors.id order by num desc'''
+    result = execute_query(c, query)
 
     n = len(result)
     print"Most Popular Authors:"
@@ -75,15 +76,16 @@ def popular_authors():
         print x+1, ")", result[x][0], " - ", result[x][1], "views"
 
 
-def error_percent():
+def error_percent(c):
     '''
     This function finds the percentage error if it exceeds 1% for a day
     '''
 
     '''Run the third function views from the README.md file first'''
     # Find the error percent where it is above 1%
-    result = execute_query('''select date, round(error_percent,1) from percentage_tb
-    where error_percent > 1.00''')
+    query = '''select date, round(error_percent,1) from percentage_tb
+    where error_percent > 1.00'''
+    result = execute_query(c, query)
     date = result[0][0]
     date = str(date)
     # Clean date from dashes
