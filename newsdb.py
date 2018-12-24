@@ -35,7 +35,7 @@ def execute_query(c, query):
     return(c.fetchall())
 
 
-def most_visited():
+def most_visited(c):
     '''
     This function finds the three most viewed articles
     on the newspaper website
@@ -44,10 +44,11 @@ def most_visited():
     '''Run the first function view from the README.md file first'''
     # Join the articles table with the most_visited_article view table
     # and select the title for each path
-    result = execute_query('''select title, most_visited_article.num
+    query = '''select title, most_visited_article.num
     from articles, most_visited_article where
     most_visited_article.path like '%' || articles.slug
-    order by num desc limit 3''')
+    order by num desc limit 3'''
+    result = execute_query(c, query)
 
     n = len(result)
     print"Three Most Visited Articles:"
