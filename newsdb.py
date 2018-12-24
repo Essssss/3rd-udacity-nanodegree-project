@@ -21,20 +21,18 @@ def db_connect():
     db.close()
 
 
-def execute_query(query):
+def execute_query(c, query):
     '''
-    execute_query takes an SQL query as a parameter. Executes the query
-    and returns the results as a list of tuplesself.
+    execute_query takes two parameters c and query.
+    Executes the query and returns the results as a list of tuples.
     args:
+    c - is a cursor which is passed by the db_connect() function
     query - an SQL query statement to be executed.
     returns:
     A list of tuples containing the result of the query.
     '''
-    db, c = db_connect()
     c.execute(query)
-    result = c.fetchall()
-    db.close()
-    return(result)
+    return(c.fetchall())
 
 
 def most_visited():
