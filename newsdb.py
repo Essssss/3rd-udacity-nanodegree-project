@@ -100,6 +100,4 @@ def error_percent(c):
     print"Error Percentage:\n", monthname, cleandate[7:],
     print",", cleandate[:4], "-", result[0][1], "% errors."
 
-most_visited()
-popular_authors()
-error_percent()
+db_connect()
