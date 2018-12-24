@@ -28,12 +28,11 @@ def execute_query(query):
     returns:
     A list of tuples containing the result of the query.
     '''
-    c = db_connect()[1]
+    db, c = db_connect()
     c.execute(query)
-    db = db_connect()[0]
     result = c.fetchall()
-    return(result)
     db.close()
+    return(result)
 
 
 def most_visited():
